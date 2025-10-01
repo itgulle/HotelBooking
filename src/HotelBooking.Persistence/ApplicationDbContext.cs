@@ -10,6 +10,6 @@ public sealed class ApplicationDbContext : DbContext
 	public DbSet<Rooms> Rooms { get; set; }
 	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		optionsBuilder.UseSqlServer(@"Server=DESKTOP-S3I99RT\SQLEXPRESS;Database=hotel_booking;Trusted_Connection=True;TrustServerCertificate=True; ");
+		optionsBuilder.UseSqlServer(@"Server=tcp:hotelbookingsql.database.windows.net,1433;Initial Catalog=bookhotel;Persist Security Info=False;User ID=hotel;Password=DWp876#HK43;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
 	}
 }

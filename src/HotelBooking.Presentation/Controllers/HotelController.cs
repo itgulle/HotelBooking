@@ -17,17 +17,7 @@ public sealed class HotelController : ApiController
     {
     }
 
-    [HttpPost("booking/room/{checkindate}/{checkoutdate}/{numberOfAdults}/{numberOfChildern}/{roomId}")]
-    public async Task<IActionResult> BookRoom(DateTime checkindate, DateTime checkoutdate, 
-			int numberOfAdults, int numberOfChildern, int roomId, CancellationToken cancellationToken)
-    {
-        var command = new CreateRoomBookingCommand(roomId, checkindate, checkoutdate, numberOfAdults, numberOfChildern, roomId);
-
-        var result = await Sender.Send(command, cancellationToken);
-        
-        return result.IsSuccess ? Ok("Booking successfull..") : BadRequest(result.Error);
-    }
-	  [HttpGet("{name}")]
+	  [HttpGet("name/{name}")]
 	  public async Task<IActionResult> GetHotelByName(string name, CancellationToken cancellationToken)
 	  {
 		  var query = new GetHotelByNameQuery(name);
@@ -36,7 +26,7 @@ public sealed class HotelController : ApiController
 
 		  return response.IsSuccess ? Ok(response.Value) : NotFound(response.Error);
 	  }
-		[HttpGet("room/{checkindate}/{checkoutdate}/{numberOfAdults}/{numberOfChildern}")]
+		[HttpGet("room/checkindate/{checkindate}/checkoutdate/{checkoutdate}/numberofadults/{numberOfAdults}/numberofchildren/{numberOfChildern}")]
 		public async Task<IActionResult> GetHotelBooking(DateTime checkindate,
 			DateTime checkoutdate, int numberOfAdults, int numberOfChildern, CancellationToken cancellationToken)
 		{
@@ -46,7 +36,17 @@ public sealed class HotelController : ApiController
 
 			return response.IsSuccess ? Ok(response.Value) : NotFound(response.Error);
 		}
-		[HttpGet("booking/{id}")]
+		[HttpPost("booking/room/checkindate/{checkindate}checkoutdate/{checkoutdate}/numberofadults/{numberOfAdults}/numberofchildrens/{numberOfChildern}roomid/{roomId}")]
+		public async Task<IActionResult> BookRoom(DateTime checkindate, DateTime checkoutdate,
+			int numberOfAdults, int numberOfChildern, int roomId, CancellationToken cancellationToken)
+		{
+			var command = new CreateRoomBookingCommand(roomId, checkindate, checkoutdate, numberOfAdults, numberOfChildern, roomId);
+
+			var result = await Sender.Send(command, cancellationToken);
+
+			return result.IsSuccess ? Ok("Booking successfull..") : BadRequest(result.Error);
+		}
+	[HttpGet("booking/id/{id}")]
 	  public async Task<IActionResult> GetHotelBooking(int id, CancellationToken cancellationToken)
 	  {
 		  var query = new GetHotelBookingByIdQuery(id);
@@ -55,4 +55,5 @@ public sealed class HotelController : ApiController
 
 		  return response.IsSuccess ? Ok(response.Value) : NotFound(response.Error);
 	  }
+
 }

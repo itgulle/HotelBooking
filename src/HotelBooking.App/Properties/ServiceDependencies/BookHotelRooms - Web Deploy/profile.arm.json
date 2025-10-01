@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "HotelBookingApp20251001131950",
+      "defaultValue": "BookHotelRooms",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
