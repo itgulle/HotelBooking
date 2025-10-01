@@ -1,8 +1,6 @@
 ﻿using HotelBooking.Domain.Entities;
 using HotelBooking.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using static HotelBooking.Domain.Errors.DomainErrors;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace HotelBooking.Persistence.Repository;
 
