@@ -1,6 +1,7 @@
 ﻿using HotelBooking.Domain.Entities;
 using HotelBooking.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 namespace HotelBooking.Persistence.Repository;
 
 internal sealed class HotelBookingRepository : IBookingRepository
@@ -13,6 +14,17 @@ internal sealed class HotelBookingRepository : IBookingRepository
 			context.SaveChanges();
 		}
 	}
+
+	public async Task<bool> Flush()
+	{
+		using (var context = new ApplicationDbContext())
+		{
+			await context.Database.ExecuteSqlRawAsync("TRUNCATE TABLE RoomsBooking") ;
+			await context.SaveChangesAsync();
+		}
+		return true;
+	}
+
 	public async Task<RoomsBooking?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
 	{
 		using (var context = new ApplicationDbContext())

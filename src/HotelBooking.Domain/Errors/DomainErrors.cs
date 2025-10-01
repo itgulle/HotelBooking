@@ -15,6 +15,9 @@ public static class DomainErrors
 
 		    public static readonly Error RoomCapacityChildren = new(
           "Room.Booking.Capacity",
-				  "This room can not be booked for this many Childern.");		    
-    }    
+				  "This room can not be booked for this many Childern.");
+				public static readonly Error Flush = new(
+					"Room.Booking.Flush",
+					"Database reset failed.");
+	}    
 }

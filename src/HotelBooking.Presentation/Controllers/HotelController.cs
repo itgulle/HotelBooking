@@ -2,6 +2,7 @@
 using HotelBooking.Application.Members.Queries.Booking;
 using HotelBooking.Application.Members.Queries.Hotel;
 using HotelBooking.Application.Members.Queries.Room;
+using HotelBooking.Domain.Entities;
 using HotelBooking.Domain.Shared;
 using HotelBooking.Presentation.Abstractions;
 using MediatR;
@@ -16,8 +17,16 @@ public sealed class HotelController : ApiController
         : base(sender)
     {
     }
+		[HttpPost("database/seedreset")]
+		public async Task<IActionResult> SeedReset(CancellationToken cancellationToken)
+		{
+			var command = new SeedResetCommand();
 
-	  [HttpGet("name/{name}")]
+			var result = await Sender.Send(command, cancellationToken);
+
+			return result.IsSuccess ? Ok("SeedReset done successfull..") : BadRequest(result.Error);
+		}
+	[HttpGet("name/{name}")]
 	  public async Task<IActionResult> GetHotelByName(string name, CancellationToken cancellationToken)
 	  {
 		  var query = new GetHotelByNameQuery(name);

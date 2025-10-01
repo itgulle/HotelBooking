@@ -8,4 +8,5 @@ public interface IBookingRepository
 		bool GetRoomAvailability(int roomId, DateTime checkInDate,
 					DateTime checkOutDate, CancellationToken cancellationToken = default);
 		void Add(RoomsBooking member);
+		Task<bool> Flush();
 }
