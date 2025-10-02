@@ -1,6 +1,7 @@
 ﻿using HotelBooking.Application.Abstractions.Messaging;
 using HotelBooking.Domain.Repositories;
 using HotelBooking.Domain.Shared;
+using System.Globalization;
 
 namespace HotelBooking.Application.Members.Queries.Room
 {
@@ -31,8 +32,8 @@ namespace HotelBooking.Application.Members.Queries.Room
 						$"for {request.numberOfAdults} adults and {request.numberOfChildern} children/"));
 			}
 			var hotelResponse = new HotelRoomResponse(member.Hotel.Id, member.Hotel.Name, member.Hotel.Address);
-			var response = new HotelRoomsByDateAndCapacityResponse(member.Id, hotelResponse, member.RoomTypeId,
-				member.RoomNumber);
+			var response = new HotelRoomsByDateAndCapacityResponse(member.Id, hotelResponse, (int)member.RoomTypeId,
+				member.RoomNumber, member.RoomTypeId.ToString());
 
 			return response;
 		}		

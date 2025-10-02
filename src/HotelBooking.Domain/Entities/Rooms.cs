@@ -1,15 +1,16 @@
-﻿using HotelBooking.Domain.Primitives;
+﻿using HotelBooking.Domain.Enums;
+using HotelBooking.Domain.Primitives;
 using System.Diagnostics;
+using System.Xml.Linq;
 namespace HotelBooking.Domain.Entities
 {
 	public class  Rooms : EntityX
 	{
-		public Rooms(int id, int roomTypeId, int roomNumber,int adultMaxCapacity,
+		public Rooms(int id, int roomNumber,int adultMaxCapacity,
 		int childernMaxCapacity)
 			: base(id)
 		{
 			Id = id;
-			RoomTypeId = roomTypeId;
 			RoomNumber = roomNumber;
 			AdultMaxCapacity = adultMaxCapacity;
 			ChildernMaxCapacity = childernMaxCapacity;
@@ -18,7 +19,7 @@ namespace HotelBooking.Domain.Entities
 		public new int Id { get; set; }
 		public int HotelId { get; set; }
 		public Hotel Hotel { get; set; }
-		public int RoomTypeId { get; set; }
+		public RoomType RoomTypeId { get; set; }
 		public int RoomNumber { get; set; }
 		public int AdultMaxCapacity { get; set; }
 		public int ChildernMaxCapacity { get; set; }

@@ -24,6 +24,13 @@ public sealed class ApplicationDbContext : DbContext
 					.HasForeignKey(d => d.HotelId)
 					.IsRequired();
 		});
+
+		modelBuilder.Entity<Rooms>(entity =>
+		{
+
+			entity.Property(d => d.RoomTypeId)
+					.HasConversion<int>();
+		});
 	}
 
 }
