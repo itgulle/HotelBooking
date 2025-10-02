@@ -30,8 +30,8 @@ namespace HotelBooking.Application.Members.Queries.Room
 						$"No Rooms available form {request.checkindate} To {request.checkoutdate}, " +
 						$"for {request.numberOfAdults} adults and {request.numberOfChildern} children/"));
 			}
-
-			var response = new HotelRoomsByDateAndCapacityResponse(member.Id, member.HotelId, member.RoomTypeId,
+			var hotelResponse = new HotelRoomResponse(member.Hotel.Id, member.Hotel.Name, member.Hotel.Address);
+			var response = new HotelRoomsByDateAndCapacityResponse(member.Id, hotelResponse, member.RoomTypeId,
 				member.RoomNumber);
 
 			return response;

@@ -29,7 +29,7 @@ internal sealed class RoomRepository : IRoomRepository
 		using (var context = new ApplicationDbContext())
 		{
 			var query = context.Rooms.Where(s => s.AdultMaxCapacity >= numberOfAdults
-			&& s.ChildernMaxCapacity >= numberOfChildern);
+			&& s.ChildernMaxCapacity >= numberOfChildern).Include(m => m.Hotel);
 			rooms = [.. query];
 		}
 		foreach (var room in rooms)

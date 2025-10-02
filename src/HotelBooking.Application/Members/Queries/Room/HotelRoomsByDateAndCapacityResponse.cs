@@ -1,5 +1,9 @@
-﻿namespace HotelBooking.Application.Members.Queries.Room
+﻿using System.Net;
+using System.Xml.Linq;
+
+namespace HotelBooking.Application.Members.Queries.Room
 {
 	public sealed record HotelRoomsByDateAndCapacityResponse(int Id,
-			int HotelId, int RoomTypeId, int RoomNumber);	
+			HotelRoomResponse Hotel, int RoomTypeId, int RoomNumber);	
+	public sealed record HotelRoomResponse(int id, string Name, string Address);
 }
